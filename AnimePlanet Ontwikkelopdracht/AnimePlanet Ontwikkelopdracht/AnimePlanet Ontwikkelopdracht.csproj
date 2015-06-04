@@ -200,6 +200,7 @@
     <Content Include="Home.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\pandora_hearts.jpg" />
     <Content Include="Lijsten.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />

@@ -58,8 +58,8 @@
                     <ul id="menu">
                         <li><a runat="server" href="~/Home">Home</a></li>
                         <li><a runat="server" href="~/Lijsten" >Lijsten</a></li>
+                        <li><a runat="server" href="~/Gebruiker" >Gebruiker</a></li>
                         <li><a runat="server" href="~/Zoeken">Zoeken</a></li>
-                        <li><a runat="server" href="~/Gebruiker>Gebruiker"></a></li>
                     </ul>
                 </nav>
             </div>
