@@ -184,9 +184,18 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Gebruiker.aspx" />
     <Content Include="Images\accent.png" />
+    <Content Include="Images\air-gear-1001.jpg" />
+    <Content Include="Images\alice_527.jpg" />
+    <Content Include="Images\another-4417.jpg" />
+    <Content Include="Images\attack-on-titan-5323.jpg" />
     <Content Include="Images\Banner1.jpg" />
     <Content Include="Images\bullet.png" />
+    <Content Include="Images\edward_elric_965.jpg" />
+    <Content Include="Images\fullmetal-alchemist.jpg" />
     <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\monkey_d_luffy_74.jpg" />
+    <Content Include="Images\monster.jpg" />
+    <Content Include="Images\one-piece.jpg" />
     <Content Include="Images\orderedList0.png" />
     <Content Include="Images\orderedList1.png" />
     <Content Include="Images\orderedList2.png" />
@@ -200,6 +209,8 @@
     <Content Include="Home.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\oz_vessalius_525.jpg" />
+    <Content Include="Images\pandora-hearts-2368.jpg" />
     <Content Include="Images\pandora_hearts.jpg" />
     <Content Include="Lijsten.aspx" />
     <Content Include="Login.aspx" />

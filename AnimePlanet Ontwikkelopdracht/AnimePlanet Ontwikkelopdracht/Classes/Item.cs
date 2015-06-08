@@ -12,9 +12,16 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
         public double GemiddeldeScore { get; set; }
         public string Soort { get; set; }
         public int Item_ID { get; set; }
+        public string Afbeelding { get; set; }
 
-        public Item(string titel, int jaar, double gemiddeldeScore, string soort, int item_ID)
+        public Item(string titel, int jaar, double gemiddeldeScore, string soort, int item_ID, string afbeelding)
         {
+            this.Titel = titel;
+            this.Jaar = jaar;
+            this.GemiddeldeScore = gemiddeldeScore;
+            this.Soort = soort;
+            this.Item_ID = item_ID;
+            this.Afbeelding = afbeelding;
         }
 
         public override string ToString()

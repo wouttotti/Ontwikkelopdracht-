@@ -10,7 +10,7 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
     public class Database
     {
         private OracleConnection connectie;
-        private string conn = WebConfigurationManager.ConnectionStrings["Constring"].ConnectionString;
+        private string conn = WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
         public void ConnectieOpen()
         {
@@ -59,6 +59,83 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
                 connectie.Close();
             }
             return Gebruiker;
+        }
+
+        public List<Item> GetItems(string sqlItem)
+        {
+            
+            List<Item> Items = new List<Item>();
+            int Item_ID = 0;
+            string Titel = "";
+            int Jaar = 0;
+            double Score = 0;
+            string Soort = "";
+            string Afbeelding = "";
+
+            try
+            {
+                ConnectieOpen();
+                OracleCommand GetItem = new OracleCommand(sqlItem, connectie);
+                OracleDataReader readerItem = GetItem.ExecuteReader();
+
+
+                while (readerItem.Read())
+                {
+
+                    Item_ID = Convert.ToInt32(readerItem["ITEM_ID"]);
+                    Titel = Convert.ToString(readerItem["TITEL"]);
+                    Jaar = Convert.ToInt32(readerItem["JAAR"]);
+                    Score = Convert.ToDouble(readerItem["GEMIDDELDESCORE"]);
+                    Soort = Convert.ToString(readerItem["SOORT"]);
+                    Afbeelding = Convert.ToString(readerItem["AFBEELDING"]);
+
+                    string sqlItemSub = "SELECT * FROM " + Soort + " WHERE ITEM_ID = (SELECT ITEM_ID FROM ITEM WHERE TITEL = '" + Titel + "' AND SOORT = '" + Soort + "')";
+                    OracleCommand GetItemSub = new OracleCommand(sqlItemSub, connectie);
+                    OracleDataReader readerItemSub = GetItemSub.ExecuteReader();
+                    while (readerItemSub.Read())
+                    {
+                        if (Soort == "Manga")
+                        {
+                            string Type;
+                            int Volumes;
+                            int Hoofdstukken;
+                            Type = Convert.ToString(readerItemSub["TYPEN"]);
+                            Volumes = Convert.ToInt32(readerItemSub["VOLUMES"]);
+                            Hoofdstukken = Convert.ToInt32(readerItemSub["HOOFDSTUKKEN"]);
+                            Items.Add(new Manga(Titel, Jaar, Score, Soort, Item_ID, Type, Volumes, Hoofdstukken, Afbeelding));
+                        }
+                        else if (Soort == "Anime")
+                        {
+                            string Type;
+                            int Afleveringen;
+                            Type = Convert.ToString(readerItemSub["TYPEN"]);
+                            Afleveringen = Convert.ToInt32(readerItemSub["AFLEVERINGEN"]);
+                            Items.Add(new Anime(Titel, Jaar, Score, Soort, Item_ID, Type, Afleveringen, Afbeelding));
+                        }
+                        else
+                        {
+                            int Serie;
+                            int Manga;
+                            string Kenmerken;
+                            string Tags;
+                            Serie = Convert.ToInt32(readerItemSub["SERIE"]);
+                            Manga = Convert.ToInt32(readerItemSub["MANGA"]);
+                            Kenmerken = Convert.ToString(readerItemSub["KENMERKEN"]);
+                            Tags = Convert.ToString(readerItemSub["TAGS"]);
+                            Items.Add(new Personage(Titel, Jaar, Score, Soort, Item_ID, Serie, Manga, Kenmerken, Tags, Afbeelding));
+                        }
+                    }
+                }
+            }
+            catch (OracleException)
+            {
+                connectie.Close();
+            }
+            finally
+            {
+                connectie.Close();
+            }
+            return Items;
         }
     }
 }

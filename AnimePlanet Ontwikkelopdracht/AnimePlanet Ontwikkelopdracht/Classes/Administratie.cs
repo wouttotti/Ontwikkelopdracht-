@@ -50,5 +50,40 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
             }
             return false;
         }
+
+        public List<Item> ZoekItems(string naam, string soort)
+        {
+            List<Item> Item = new List<Item>();
+            if (naam == "")
+            {
+                string sqlItem = "SELECT * FROM ITEM WHERE SOORT = '" + soort + "'";
+                Item = Connectie.GetItems(sqlItem);
+            }
+            else
+            {
+                if (soort == "Manga")
+                {
+                    
+                    string sqlItem = "SELECT * FROM ITEM WHERE TITEL = '" + naam + "' AND SOORT = 'Manga'";
+                    Item = Connectie.GetItems(sqlItem);
+                }
+                else if(soort == "Anime")
+                {
+                    string sqlItem = "SELECT * FROM ITEM WHERE TITEL = '" + naam + "' AND SOORT = 'Anime'";
+                    Item = Connectie.GetItems(sqlItem);
+                }
+                else
+                {
+                    string sqlItem = "SELECT * FROM ITEM WHERE TITEL = '" + naam + "' AND SOORT = 'Personage'";
+                    Item = Connectie.GetItems(sqlItem);
+                }
+            }
+            return Item;
+        }
+        public List<Item> PersonageTitel(int id)
+        {
+            string sqlItem = "SELECT * FROM ITEM WHERE ITEM_ID = (SELECT MANGA FROM PERSONAGE WHERE ITEM_ID = " + id + ") or Item_ID = (SELECT SERIE FROM PERSONAGE WHERE ITEM_ID = " + id + ")";
+            return Connectie.GetItems(sqlItem);
+        }
     }
 }
