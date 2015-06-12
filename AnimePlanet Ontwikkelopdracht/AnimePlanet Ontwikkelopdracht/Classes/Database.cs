@@ -114,12 +114,24 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
                         }
                         else
                         {
-                            int Serie;
-                            int Manga;
+                            int Serie = 0;
+                            int Manga = 0;
                             string Kenmerken;
                             string Tags;
-                            Serie = Convert.ToInt32(readerItemSub["SERIE"]);
-                            Manga = Convert.ToInt32(readerItemSub["MANGA"]);
+                            try
+                            {
+                                Serie = Convert.ToInt32(readerItemSub["SERIE"]);
+                            }
+                            catch(InvalidCastException)
+                            {
+                            }
+                            try
+                            {
+                                Manga = Convert.ToInt32(readerItemSub["MANGA"]);
+                            }
+                            catch(InvalidCastException)
+                            {
+                            }
                             Kenmerken = Convert.ToString(readerItemSub["KENMERKEN"]);
                             Tags = Convert.ToString(readerItemSub["TAGS"]);
                             Items.Add(new Personage(Titel, Jaar, Score, Soort, Item_ID, Serie, Manga, Kenmerken, Tags, Afbeelding));

@@ -6,7 +6,7 @@
     
 
 <div id="Zoeken" style="margin-left: 100px">
-    <asp:TextBox ID="TbZoeken" runat="server" style="width: 300px"></asp:TextBox>
+    <asp:TextBox ID="TbZoeken" runat="server" style="width: 300px" BorderStyle="None"></asp:TextBox>
     <asp:DropDownList ID="DdlSoort"  runat="server">
         <asp:ListItem>Anime</asp:ListItem>
         <asp:ListItem>Manga</asp:ListItem>
@@ -15,16 +15,11 @@
 
     <br />
     <asp:Button ID="btnzoeken" runat="server" Text="Zoeken" Width="140px" OnClick="btnzoeken_Click" />
-
-    <asp:GridView ID="GvItems" runat="server" AutoGenerateColumns="False">
-    <Columns>
-        <asp:BoundField HeaderText="Titel" DataField="Titel"></asp:BoundField>
-        <asp:BoundField HeaderText="Jaar" DataField="Jaar"></asp:BoundField>
-        <asp:BoundField HeaderText="Score" DataField="Score"></asp:BoundField>
-        <asp:ImageField DataImageUrlField="Afbeelding">
-            <ItemStyle width="10px" Height ="30px"/>
-        </asp:ImageField>
-    </Columns>
+    <asp:Label ID="LbError" runat="server" Text="Error"></asp:Label>
+    <asp:GridView ID="GvItems" runat="server" AutoGenerateColumns="False" OnRowCommand="gv_RowCommand">
+       
     </asp:GridView>
+    
+    <br />
     </div>
 </asp:Content>

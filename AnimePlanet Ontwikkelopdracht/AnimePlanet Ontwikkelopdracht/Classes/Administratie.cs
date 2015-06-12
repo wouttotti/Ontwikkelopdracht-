@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace AnimePlanet_Ontwikkelopdracht.Classes
 {
@@ -12,6 +15,49 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
         public Administratie()
         {
 
+        }
+
+        public DataTable ItemsDataTable(string soort)
+        {
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add(new DataColumn("Item_ID", typeof(int)));
+
+            dt.Columns.Add(new DataColumn("Titel", typeof(string)));
+
+            dt.Columns.Add(new DataColumn("Jaar", typeof(int)));
+
+            dt.Columns.Add(new DataColumn("Score", typeof(double)));
+
+            dt.Columns.Add(new DataColumn("Afbeelding", typeof(string)));
+
+            if (soort == "Anime")
+            {
+                dt.Columns.Add(new DataColumn("Typen", typeof(string)));
+                
+                dt.Columns.Add(new DataColumn("Afleveringen", typeof(int)));
+            }
+            else if (soort == "Manga")
+            {
+                dt.Columns.Add(new DataColumn("Typen", typeof(string)));
+               
+                dt.Columns.Add(new DataColumn("Volumes", typeof(int)));
+             
+                dt.Columns.Add(new DataColumn("Hoofdstukken", typeof(int)));
+            }
+            else
+            {
+                dt.Columns.Add(new DataColumn("Serie", typeof(string)));
+                
+                dt.Columns.Add(new DataColumn("Manga", typeof(string)));
+                
+                dt.Columns.Add(new DataColumn("Kenmerken", typeof(string)));
+                
+                dt.Columns.Add(new DataColumn("Tags", typeof(string)));
+            }
+
+            dt.Columns.Add(new DataColumn("ButtonID", typeof(int)));
+            return dt;
         }
 
         public bool Inloggen(string Email, string Wachtwoord)
@@ -64,17 +110,17 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
                 if (soort == "Manga")
                 {
                     
-                    string sqlItem = "SELECT * FROM ITEM WHERE TITEL = '" + naam + "' AND SOORT = 'Manga'";
+                    string sqlItem = "SELECT * FROM ITEM WHERE TITEL LIKE '%" + naam + "%' AND SOORT = 'Manga'";
                     Item = Connectie.GetItems(sqlItem);
                 }
                 else if(soort == "Anime")
                 {
-                    string sqlItem = "SELECT * FROM ITEM WHERE TITEL = '" + naam + "' AND SOORT = 'Anime'";
+                    string sqlItem = "SELECT * FROM ITEM WHERE TITEL LIKE '%" + naam + "%' AND SOORT = 'Anime'";
                     Item = Connectie.GetItems(sqlItem);
                 }
                 else
                 {
-                    string sqlItem = "SELECT * FROM ITEM WHERE TITEL = '" + naam + "' AND SOORT = 'Personage'";
+                    string sqlItem = "SELECT * FROM ITEM WHERE TITEL LIKE '%" + naam + "%' AND SOORT = 'Personage'";
                     Item = Connectie.GetItems(sqlItem);
                 }
             }
@@ -84,6 +130,10 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
         {
             string sqlItem = "SELECT * FROM ITEM WHERE ITEM_ID = (SELECT MANGA FROM PERSONAGE WHERE ITEM_ID = " + id + ") or Item_ID = (SELECT SERIE FROM PERSONAGE WHERE ITEM_ID = " + id + ")";
             return Connectie.GetItems(sqlItem);
+        }
+        public bool ToevoegenAanLijst(int Item_ID)
+        {
+            return true;
         }
     }
 }

@@ -13,112 +13,71 @@ namespace AnimePlanet_Ontwikkelopdracht
         public Classes.Administratie administratie = new Classes.Administratie();
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-           
-        }  
- 
-        public DataTable GetData()
-        {
-            DataTable dt = new DataTable();
-            BoundField bfield1 = new BoundField();
-            bfield1.HeaderText = "Titel";
-            bfield1.DataField = "Titel";
-            GvItems.Columns.Add(bfield1);
-            dt.Columns.Add(new DataColumn("Titel", typeof(string)));
 
-            BoundField bfield2 = new BoundField();
-            bfield2.HeaderText = "Jaar";
-            bfield2.DataField = "Jaar";
-            GvItems.Columns.Add(bfield2);
-            dt.Columns.Add(new DataColumn("Jaar", typeof(int)));
+            System.Web.UI.WebControls.ImageField DataColumn;
 
-            BoundField bfield3 = new BoundField();
-            bfield3.HeaderText = "Score";
-            bfield3.DataField = "Score";
-            GvItems.Columns.Add(bfield3);
-            dt.Columns.Add(new DataColumn("Score", typeof(double)));
-
-            ImageField bfield4 = new ImageField();
-            bfield4.DataImageUrlField = "Afbeelding";
-            bfield4.ControlStyle.Width = 130;
-            bfield4.ControlStyle.Height = 190;
-            GvItems.Columns.Add(bfield4);
-            dt.Columns.Add(new DataColumn("Afbeelding", typeof(string)));
+            try
+            {
+                DataColumn = GvItems.Columns[4] as System.Web.UI.WebControls.ImageField;
+                DataColumn.ControlStyle.Width = 130;
+                DataColumn.ControlStyle.Height = 190;
+            }
+            catch (ArgumentOutOfRangeException)
+            { }
             
-            if(DdlSoort.SelectedItem.ToString() == "Anime")
-            {
-                BoundField bfield5 = new BoundField();
-                bfield5.HeaderText = "Typen";
-                bfield5.DataField = "Typen";
-                GvItems.Columns.Add(bfield5);
-                dt.Columns.Add(new DataColumn("Typen", typeof(string)));
-                BoundField bfield6 = new BoundField();
-                bfield6.HeaderText = "Afleveringen";
-                bfield6.DataField = "Afleveringen";
-                GvItems.Columns.Add(bfield6);
-                dt.Columns.Add(new DataColumn("Afleveringen", typeof(int)));
-            }
-            else if(DdlSoort.SelectedItem.ToString() == "Manga")
-            {
-                BoundField bfield5 = new BoundField();
-                bfield5.HeaderText = "Typen";
-                bfield5.DataField = "Typen";
-                GvItems.Columns.Add(bfield5);
-                dt.Columns.Add(new DataColumn("Typen", typeof(string)));
-                BoundField bfield6 = new BoundField();
-                bfield6.HeaderText = "Volumes";
-                bfield6.DataField = "Volumes";
-                GvItems.Columns.Add(bfield6);
-                dt.Columns.Add(new DataColumn("Volumes", typeof(int)));
-                BoundField bfield7 = new BoundField();
-                bfield7.HeaderText = "Hoofdstukken";
-                bfield7.DataField = "Hoofdstukken";
-                GvItems.Columns.Add(bfield7);
-                dt.Columns.Add(new DataColumn("Hoofdstukken", typeof(int)));
-            }
-            else
-            {
-                BoundField bfield5 = new BoundField();
-                bfield5.HeaderText = "Serie";
-                bfield5.DataField = "Serie";
-                GvItems.Columns.Add(bfield5);
-                dt.Columns.Add(new DataColumn("Serie", typeof(string)));
-                BoundField bfield6 = new BoundField();
-                bfield6.HeaderText = "Manga";
-                bfield6.DataField = "Manga";
-                GvItems.Columns.Add(bfield6);
-                dt.Columns.Add(new DataColumn("Manga", typeof(string)));
-                BoundField bfield7 = new BoundField();
-                bfield7.HeaderText = "Kenmerken";
-                bfield7.DataField = "Kenmerken";
-                GvItems.Columns.Add(bfield7);
-                dt.Columns.Add(new DataColumn("Kenmerken", typeof(string)));
-                BoundField bfield8 = new BoundField();
-                bfield8.HeaderText = "Tags";
-                bfield8.DataField = "Tags";
-                GvItems.Columns.Add(bfield8);
-                dt.Columns.Add(new DataColumn("Tags", typeof(string)));
-            }
-            return dt;
-        }
+        }  
+
 
         protected void btnzoeken_Click(object sender, EventArgs e)
         {
             GvItems.DataSource = null;
+            ButtonField BTF = new ButtonField();
             GvItems.Columns.Clear();
             List<Classes.Item> items = administratie.ZoekItems(TbZoeken.Text, DdlSoort.SelectedItem.ToString());
-            DataTable dt = GetData();
+            DataTable dt = administratie.ItemsDataTable(DdlSoort.SelectedItem.ToString());
+            foreach(DataColumn dc in dt.Columns)
+            {
+                if(dc.ColumnName == "Afbeelding")
+                {
+                    ImageField IF = new ImageField();
+                    IF.ControlStyle.Height = 190;
+                    IF.ControlStyle.Width = 130;
+                    IF.DataImageUrlField = dc.ColumnName;
+                    GvItems.Columns.Add(IF);
+                }
+                else if(dc.ColumnName != "ButtonID")
+                {
+                    BoundField BF = new BoundField();
+                    BF.HeaderText = dc.ColumnName;
+                    BF.DataField = dc.ColumnName;
+                    GvItems.Columns.Add(BF);
+                }
+
+            }
+
+
+            if (DdlSoort.SelectedItem.ToString() == "Anime" || DdlSoort.SelectedItem.ToString() == "Manga")
+            {
+                BTF.ButtonType = new ButtonType();
+                BTF.CommandName = "Add";
+                BTF.Text = "Add";
+                GvItems.Columns.Add(BTF);
+            }
+
             foreach(Classes.Item Temp in items)
             {
                 if(Temp is Classes.Manga)
                 {
                     Classes.Manga Manga = Temp as Classes.Manga;
-                    dt.Rows.Add(Temp.Titel, Temp.Jaar, Temp.GemiddeldeScore, Temp.Afbeelding, Manga.Type, Manga.Volumes, Manga.Hoofdstukken);
+                    dt.Rows.Add(Temp.Item_ID, Temp.Titel, Temp.Jaar, Temp.GemiddeldeScore, Temp.Afbeelding, Manga.Type, Manga.Volumes, Manga.Hoofdstukken, Temp.Item_ID);
+
                 }
                 else if (Temp is Classes.Anime)
                 {
+                    
                     Classes.Anime Anime = Temp as Classes.Anime;
-                    dt.Rows.Add(Temp.Titel, Temp.Jaar, Temp.GemiddeldeScore, Temp.Afbeelding, Anime.Type, Anime.Afleveringen);
+                    dt.Rows.Add(Temp.Item_ID, Temp.Titel, Temp.Jaar, Temp.GemiddeldeScore, Temp.Afbeelding, Anime.Type, Anime.Afleveringen, Temp.Item_ID);
+                    
                 }
                 else
                 {
@@ -137,11 +96,23 @@ namespace AnimePlanet_Ontwikkelopdracht
                             Manga = Temp2.Titel;
                         }
                     }
-                    dt.Rows.Add(Temp.Titel, Temp.Jaar, Temp.GemiddeldeScore, Temp.Afbeelding, Anime, Manga, Personage.Kenmerken, Personage.Tags);
+                    dt.Rows.Add(Temp.Item_ID, Temp.Titel, Temp.Jaar, Temp.GemiddeldeScore, Temp.Afbeelding, Anime, Manga, Personage.Kenmerken, Personage.Tags);
                 }
             }
             GvItems.DataSource = dt;
             GvItems.DataBind();
+        }
+        public void gv_RowCommand(Object sender, GridViewCommandEventArgs e)
+        {
+            if(e.CommandName.Equals("Add"))
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                int Item_ID = Convert.ToInt32(GvItems.Rows[index].Cells[0].Text);
+                if(administratie.ToevoegenAanLijst(Item_ID) == true)
+                {
+                    LbError.Text = Convert.ToString(Item_ID);
+                }
+            }
         }
     }
 }
