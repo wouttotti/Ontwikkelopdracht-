@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Oracle.DataAccess.Types;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 using System.Data;
 using System.Web.Configuration;
 

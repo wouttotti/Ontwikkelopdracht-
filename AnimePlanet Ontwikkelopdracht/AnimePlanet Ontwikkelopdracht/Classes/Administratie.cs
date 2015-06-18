@@ -135,9 +135,9 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
 
         public bool ToevoegenAanLijst(int Item_ID, string email)
         {
-            string SelectedItemSql = "SELEC * FROM ITEM WHERE ITEM_ID = " + Item_ID;
+            string SelectedItemSql = "SELECT * FROM ITEM WHERE ITEM_ID = " + Item_ID;
             List<Item> ItemCheck = Connectie.GetItems(SelectedItemSql);
-            string LijstItemSql = "SELECT * FROM ITEM WHERE ITEM_ID = (SELECT ITEM_ID FROM LIJST_ITEM WHERE GEBRUIKER_ID = (SELECT GEBRUIKER_ID FROM GEBRUIKER WHERE EMAIL = '" + email + "'))";
+            string LijstItemSql = "SELECT * FROM ITEM WHERE ITEM_ID IN (SELECT ITEM_ID FROM LIJST_ITEM WHERE LIJST_ID IN (SELECT LIJST_ID FROM LIJST WHERE GEBRUIKER_ID = (SELECT GEBRUIKER_ID FROM GEBRUIKER WHERE EMAIL = '"+email+"')))";
             List<Item> LijstItems = Connectie.GetItems(LijstItemSql);
             foreach (Item Temp in ItemCheck)
             {
@@ -147,7 +147,7 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
                     {
                         if (Temp2.Item_ID != Temp.Item_ID)
                         {
-                            string sql = "INSERT INTO LIJST_ITEM (LIJSTITEM_ID, LIJST_ID, ITEM_ID) VALUES (SEQ_LIJST_ITEM.NEXTVAL, (SELECT LIJST_ID FROM LIJST WHERE NAAM = '" + Temp2.Soort + "' AND GEBRUIKER_ID = (SELECT GEBRUIKER_ID FROM GEBRUIKER WHERE EMAIL = '" + email + "'), " + Item_ID + ")";
+                            string sql = "INSERT INTO LIJST_ITEM (LIJSTITEM_ID, LIJST_ID, ITEM_ID) VALUES (SEQ_LIJST_ITEM.NEXTVAL, (SELECT LIJST_ID FROM LIJST WHERE NAAM = '" + Temp2.Soort + "' AND GEBRUIKER_ID = (SELECT GEBRUIKER_ID FROM GEBRUIKER WHERE EMAIL = '" + email + "')), " + Item_ID + ")";
                             Connectie.Insert(sql);
                             return true;
                         }
@@ -157,12 +157,20 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
             return false;
         }
 
+        public bool VolgerToevoegen(int Gebruiker_ID, string email)
+        {
+            return true;
+        }
+
         public DataTable ZoekenNaarGebruikers(string NaamEmail)
         {
             List<Gebruiker> Gebruikers = new List<Gebruiker>();
             DataTable dt = new DataTable();
-            string sqlEmail = "SELECT * FROM GEBRUIKERS WHERE EMAIL LIKE '%" + NaamEmail + "%'";
-            string sqlNaam = "SELECT * FROM GEBRUIKERS WHERE NAAM LIKE '%" + NaamEmail + "%'";
+            dt.Columns.Add(new DataColumn("ID", typeof(int)));
+            dt.Columns.Add(new DataColumn("Email", typeof(string)));
+            dt.Columns.Add(new DataColumn("Naam", typeof(string)));
+            string sqlEmail = "SELECT * FROM GEBRUIKER WHERE EMAIL LIKE '%" + NaamEmail + "%'";
+            string sqlNaam = "SELECT * FROM GEBRUIKER WHERE NAAM LIKE '%" + NaamEmail + "%'";
             if((Gebruikers = Connectie.GetGebruikers(sqlEmail)).Count > 0)
             {
                 foreach(Gebruiker Temp in Gebruikers)
@@ -184,12 +192,14 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
         {
             List<Gebruiker> Volgers = new List<Gebruiker>();
             DataTable dt = new DataTable();
+            dt.Columns.Add(new DataColumn("Email", typeof(string)));
+            dt.Columns.Add(new DataColumn("Naam", typeof(string)));
             string sqlEmail = "SELECT * FROM GEBRUIKER WHERE GEBRUIKER_ID IN (SELECT Volger FROM VOLGER WHERE GEBRUIKER = (SELECT GEBRUIKER_ID FROM GEBRUIKER WHERE EMAIL = '" + Email + "'))";
             if((Volgers = Connectie.GetGebruikers(sqlEmail)).Count > 0)
             {
                 foreach(Gebruiker Temp in Volgers)
                 {
-                    dt.Rows.Add(Temp.Naam, Temp.Email);
+                    dt.Rows.Add(Temp.Email, Temp.Naam);
                 }
             }
             return dt;

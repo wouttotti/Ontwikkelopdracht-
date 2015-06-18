@@ -68,4 +68,3 @@ C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\
 C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\obj\Debug\AnimePlanet Ontwikkelopdracht.dll
 C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\obj\Debug\AnimePlanet Ontwikkelopdracht.pdb
 C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\obj\Debug\AnimePlanet Ontwikkelopdracht.csprojResolveAssemblyReference.cache
-C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\bin\Oracle.DataAccess.dll

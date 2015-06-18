@@ -39,16 +39,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Oracle.DataAccess, Version=4.112.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\oraclexe\app\oracle\product\11.2.0\server\odp.net\bin\4\Oracle.DataAccess.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Core" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="system.data.oracleclient" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -186,16 +183,15 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Gebruiker.aspx" />
     <Content Include="Images\accent.png" />
-    <Content Include="Images\air-gear-1001.jpg" />
-    <Content Include="Images\alice_527.jpg" />
-    <Content Include="Images\another-4417.jpg" />
-    <Content Include="Images\attack-on-titan-5323.jpg" />
+    <Content Include="Images\Air-Gear.jpg" />
+    <Content Include="Images\Alice.jpg" />
+    <Content Include="Images\Another.jpg" />
+    <Content Include="Images\Attack-On-Titan.jpg" />
     <Content Include="Images\Banner1.jpg" />
     <Content Include="Images\bullet.png" />
-    <Content Include="Images\edward_elric_965.jpg" />
-    <Content Include="Images\fullmetal-alchemist.jpg" />
+    <Content Include="Images\Edward-Elric.jpg" />
     <Content Include="Images\heroAccent.png" />
-    <Content Include="Images\monkey_d_luffy_74.jpg" />
+    <Content Include="Images\Monkey-D-Luffy.jpg" />
     <Content Include="Images\monster.jpg" />
     <Content Include="Images\one-piece.jpg" />
     <Content Include="Images\orderedList0.png" />
@@ -211,9 +207,9 @@
     <Content Include="Home.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Images\oz_vessalius_525.jpg" />
-    <Content Include="Images\pandora-hearts-2368.jpg" />
-    <Content Include="Images\pandora_hearts.jpg" />
+    <Content Include="Images\Oz-Vessalius.jpg" />
+    <Content Include="Images\Pandora-Hearts-Anime.jpg" />
+    <Content Include="Images\Pandora-Hearts-Manga.jpg" />
     <Content Include="Lijsten.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="packages.config" />
