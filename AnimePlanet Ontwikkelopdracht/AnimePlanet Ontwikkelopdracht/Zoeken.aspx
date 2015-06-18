@@ -15,7 +15,7 @@
 
     <br />
     <asp:Button ID="btnzoeken" runat="server" Text="Zoeken" Width="140px" OnClick="btnzoeken_Click" />
-    <asp:Label ID="LbError" runat="server" Text="Error"></asp:Label>
+    <asp:Label ID="LbError" runat="server" Text="Error" Visible="False"></asp:Label>
     <asp:GridView ID="GvItems" runat="server" AutoGenerateColumns="False" OnRowCommand="gv_RowCommand">
        
     </asp:GridView>

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data.OracleClient;
+using Oracle.DataAccess.Types;
+using Oracle.DataAccess.Client;
+using System.Data;
 using System.Web.Configuration;
 
 namespace AnimePlanet_Ontwikkelopdracht.Classes
@@ -77,7 +79,7 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
                 ConnectieOpen();
                 OracleCommand GetItem = new OracleCommand(sqlItem, connectie);
                 OracleDataReader readerItem = GetItem.ExecuteReader();
-
+                OracleDataAdapter Adapter = new OracleDataAdapter(GetItem);
 
                 while (readerItem.Read())
                 {
@@ -148,6 +150,26 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
                 connectie.Close();
             }
             return Items;
+        }
+
+        public bool Insert(string sql)
+        {
+            try
+            {
+                ConnectieOpen();
+                OracleDataAdapter DataAdapter = new OracleDataAdapter(sql, connectie);
+                DataSet Data = new DataSet();
+                DataAdapter.Fill(Data);
+                return true;
+            }
+            catch (OracleException)
+            {
+                return false;
+            }
+            finally
+            {
+                connectie.Close();
+            }
         }
     }
 }

@@ -13,7 +13,6 @@ namespace AnimePlanet_Ontwikkelopdracht
         public Classes.Administratie administratie = new Classes.Administratie();
         protected void Page_Load(object sender, EventArgs e)
         {
-
             System.Web.UI.WebControls.ImageField DataColumn;
 
             try
@@ -30,6 +29,7 @@ namespace AnimePlanet_Ontwikkelopdracht
 
         protected void btnzoeken_Click(object sender, EventArgs e)
         {
+            LbError.Visible = false;
             GvItems.DataSource = null;
             ButtonField BTF = new ButtonField();
             GvItems.Columns.Clear();
@@ -52,7 +52,6 @@ namespace AnimePlanet_Ontwikkelopdracht
                     BF.DataField = dc.ColumnName;
                     GvItems.Columns.Add(BF);
                 }
-
             }
 
 
@@ -108,9 +107,18 @@ namespace AnimePlanet_Ontwikkelopdracht
             {
                 int index = Convert.ToInt32(e.CommandArgument);
                 int Item_ID = Convert.ToInt32(GvItems.Rows[index].Cells[0].Text);
-                if(administratie.ToevoegenAanLijst(Item_ID) == true)
+              
+                if (administratie.ToevoegenAanLijst(Item_ID, Convert.ToString(Session["EMAIL"])) == true)
                 {
-                    LbError.Text = Convert.ToString(Item_ID);
+                    LbError.Text = "Item is toegevoegd.";
+                    LbError.ForeColor = System.Drawing.Color.Green;
+                    LbError.Visible = true;
+                }
+                else
+                {
+                    LbError.Text = "Item is al in je lijst aanwezig.";
+                    LbError.ForeColor = System.Drawing.Color.Red;
+                    LbError.Visible = true;
                 }
             }
         }

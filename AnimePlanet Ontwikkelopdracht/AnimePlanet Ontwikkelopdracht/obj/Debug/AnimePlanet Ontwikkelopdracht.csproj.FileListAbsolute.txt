@@ -53,11 +53,9 @@ C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\
 C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\bin\Microsoft.ScriptManager.MSAjax.dll
 C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\bin\Microsoft.ScriptManager.WebForms.dll
 C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\bin\Oracle.Web.dll
 C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\bin\System.Web.Optimization.dll
 C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\bin\System.Web.Providers.dll
 C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\bin\WebGrease.dll
-C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\bin\Oracle.DataAccess.dll
 C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\bin\EntityFramework.xml
 C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\bin\DotNetOpenAuth.Core.xml
 C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\bin\DotNetOpenAuth.OAuth.xml
@@ -70,3 +68,4 @@ C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\
 C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\obj\Debug\AnimePlanet Ontwikkelopdracht.dll
 C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\obj\Debug\AnimePlanet Ontwikkelopdracht.pdb
 C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\obj\Debug\AnimePlanet Ontwikkelopdracht.csprojResolveAssemblyReference.cache
+C:\Users\Wout\Documents\GitHub\Ontwikkelopdracht-\AnimePlanet Ontwikkelopdracht\AnimePlanet Ontwikkelopdracht\bin\Oracle.DataAccess.dll

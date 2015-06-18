@@ -126,14 +126,73 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
             }
             return Item;
         }
+
         public List<Item> PersonageTitel(int id)
         {
-            string sqlItem = "SELECT * FROM ITEM WHERE ITEM_ID = (SELECT MANGA FROM PERSONAGE WHERE ITEM_ID = " + id + ") or Item_ID = (SELECT SERIE FROM PERSONAGE WHERE ITEM_ID = " + id + ")";
+            string sqlItem = "SELECT * FROM ITEM WHERE ITEM_ID = (SELECT MANGA FROM PERSONAGE WHERE ITEM_ID = " + id + ") or Item_ID = (SELECT SERIE FROM PERSONAGE WHERE ITEM_ID = " + id + ")";           
             return Connectie.GetItems(sqlItem);
         }
-        public bool ToevoegenAanLijst(int Item_ID)
+
+        public bool ToevoegenAanLijst(int Item_ID, string email)
         {
-            return true;
+            string SelectedItemSql = "SELEC * FROM ITEM WHERE ITEM_ID = " + Item_ID;
+            List<Item> ItemCheck = Connectie.GetItems(SelectedItemSql);
+            string LijstItemSql = "SELECT * FROM ITEM WHERE ITEM_ID = (SELECT ITEM_ID FROM LIJST_ITEM WHERE GEBRUIKER_ID = (SELECT GEBRUIKER_ID FROM GEBRUIKER WHERE EMAIL = '" + email + "'))";
+            List<Item> LijstItems = Connectie.GetItems(LijstItemSql);
+            foreach (Item Temp in ItemCheck)
+            {
+                if (Temp.Soort != "Personage")
+                {
+                    foreach (Item Temp2 in LijstItems)
+                    {
+                        if (Temp2.Item_ID != Temp.Item_ID)
+                        {
+                            string sql = "INSERT INTO LIJST_ITEM (LIJSTITEM_ID, LIJST_ID, ITEM_ID) VALUES (SEQ_LIJST_ITEM.NEXTVAL, (SELECT LIJST_ID FROM LIJST WHERE NAAM = '" + Temp2.Soort + "' AND GEBRUIKER_ID = (SELECT GEBRUIKER_ID FROM GEBRUIKER WHERE EMAIL = '" + email + "'), " + Item_ID + ")";
+                            Connectie.Insert(sql);
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public DataTable ZoekenNaarGebruikers(string NaamEmail)
+        {
+            List<Gebruiker> Gebruikers = new List<Gebruiker>();
+            DataTable dt = new DataTable();
+            string sqlEmail = "SELECT * FROM GEBRUIKERS WHERE EMAIL LIKE '%" + NaamEmail + "%'";
+            string sqlNaam = "SELECT * FROM GEBRUIKERS WHERE NAAM LIKE '%" + NaamEmail + "%'";
+            if((Gebruikers = Connectie.GetGebruikers(sqlEmail)).Count > 0)
+            {
+                foreach(Gebruiker Temp in Gebruikers)
+                {
+                    dt.Rows.Add(Temp.Gebruiker_ID, Temp.Email, Temp.Naam);
+                }
+            }
+            else if((Gebruikers = Connectie.GetGebruikers(sqlNaam)).Count > 0)
+            {
+                foreach (Gebruiker Temp in Gebruikers)
+                {
+                    dt.Rows.Add(Temp.Gebruiker_ID, Temp.Email, Temp.Naam);
+                }
+            }
+            return dt;
+        }
+
+        public DataTable GebruikerVolger(string Email)
+        {
+            List<Gebruiker> Volgers = new List<Gebruiker>();
+            DataTable dt = new DataTable();
+            string sqlEmail = "SELECT * FROM GEBRUIKER WHERE GEBRUIKER_ID IN (SELECT Volger FROM VOLGER WHERE GEBRUIKER = (SELECT GEBRUIKER_ID FROM GEBRUIKER WHERE EMAIL = '" + Email + "'))";
+            if((Volgers = Connectie.GetGebruikers(sqlEmail)).Count > 0)
+            {
+                foreach(Gebruiker Temp in Volgers)
+                {
+                    dt.Rows.Add(Temp.Naam, Temp.Email);
+                }
+            }
+            return dt;
         }
     }
 }
