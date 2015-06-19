@@ -40,6 +40,15 @@ namespace AnimePlanet_Ontwikkelopdracht {
         protected global::System.Web.UI.WebControls.Button BtnManga;
         
         /// <summary>
+        /// LbError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbError;
+        
+        /// <summary>
         /// GvItemsLijst control.
         /// </summary>
         /// <remarks>

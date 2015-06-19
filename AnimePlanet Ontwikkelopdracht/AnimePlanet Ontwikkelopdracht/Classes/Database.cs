@@ -164,6 +164,37 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
             return Items;
         }
 
+        public List<Lijst>  GetLijst(string sqlLijst)
+        {
+            List<Lijst> Lijsten = new List<Lijst>();
+            int Lijst_ID;
+            string Soort;
+            int Gebruiker;
+
+            try
+            {
+                ConnectieOpen();
+                OracleCommand Get = new OracleCommand(sqlLijst, connectie);
+                OracleDataReader reader = Get.ExecuteReader();
+                while (reader.Read())
+                {
+                    Lijst_ID = Convert.ToInt32(reader["LIJST_ID"]);
+                    Soort = Convert.ToString(reader["NAAM"]);
+                    Gebruiker = Convert.ToInt32(reader["GEBRUIKER_ID"]);
+
+                    Lijsten.Add(new Lijst(Lijst_ID, Soort, Gebruiker));
+                }
+            }
+            catch(OracleException)
+            {
+                connectie.Close();   
+            }
+            finally
+            {
+                connectie.Close();
+            }
+            return Lijsten;
+        }
         /// <summary>
         /// Hier wordt er een insert gemaakt in de database.
         /// </summary>

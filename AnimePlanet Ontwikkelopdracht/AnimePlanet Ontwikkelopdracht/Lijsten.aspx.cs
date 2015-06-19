@@ -14,7 +14,8 @@ namespace AnimePlanet_Ontwikkelopdracht
         Administratie administratie = new Administratie();
         protected void Page_Load(object sender, EventArgs e)
         {
-              System.Web.UI.WebControls.ImageField DataColumn;
+            LbError.Visible = false;
+            System.Web.UI.WebControls.ImageField DataColumn;
 
             try
             {
@@ -32,6 +33,12 @@ namespace AnimePlanet_Ontwikkelopdracht
             GvItemsLijst.Columns.Clear();
             List<Item> items = administratie.GebruikerLijst("Anime", Session["Email"].ToString());
             DataTable dt = administratie.ItemsDataTable("Anime");
+            if(dt.Rows.Count == 0)
+            {
+                LbError.Text = "Je hebt nog geen anime in je lijst.";
+                LbError.ForeColor = System.Drawing.Color.Red;
+                LbError.Visible = true;
+            }
             foreach(DataColumn dc in dt.Columns)
             {
                 if(dc.ColumnName == "Afbeelding")
@@ -66,6 +73,12 @@ namespace AnimePlanet_Ontwikkelopdracht
             GvItemsLijst.Columns.Clear();
             List<Item> items = administratie.GebruikerLijst("Manga", Session["Email"].ToString());
             DataTable dt = administratie.ItemsDataTable("Manga");
+            if (dt.Rows.Count == 0)
+            {
+                LbError.Text = "Je hebt nog geen manga in je lijst.";
+                LbError.ForeColor = System.Drawing.Color.Red;
+                LbError.Visible = true;
+            }
             foreach (DataColumn dc in dt.Columns)
             {
                 if (dc.ColumnName == "Afbeelding")

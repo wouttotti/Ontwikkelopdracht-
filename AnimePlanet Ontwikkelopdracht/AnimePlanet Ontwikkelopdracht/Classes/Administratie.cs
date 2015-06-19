@@ -52,8 +52,14 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
                             throw new NoDataException("Deze gebruiker bestaat al.");
                         }
                     }
+                    string LijstenSql = "SELECT * FROM LIJST";
+                    List<Lijst> NewLijstID = Connectie.GetLijst(LijstenSql);
                     string InsertSql = "INSERT INTO GEBRUIKER VALUES(SEQ_GEBRUIKER.NEXTVAL, '" + naam + "', '" + email + "', '" + wachtwoord + "')";
                     Connectie.Insert(InsertSql);
+                    string InsertAnimeLijst = "INSERT INTO LIJST VALUES(" + (NewLijstID.Count + 1) + ", 'Anime', (SELECT GEBRUIKER_ID FROM GEBRUIKER WHERE EMAIL = '" + email + "'))";
+                    Connectie.Insert(InsertAnimeLijst);
+                    string InsertMangaLijst = "INSERT INTO LIJST VALUES(" + (NewLijstID.Count + 2) + ", 'Manga', (SELECT GEBRUIKER_ID FROM GEBRUIKER WHERE EMAIL = '" + email + "'))";
+                    Connectie.Insert(InsertMangaLijst);
                    
                 }
                 return true;

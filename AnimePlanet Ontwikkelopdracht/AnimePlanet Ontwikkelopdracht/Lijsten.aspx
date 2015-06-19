@@ -7,6 +7,8 @@
         <br />
         <asp:Button ID="BtnAnime" runat="server" Text="Anime" width="100px" OnClick="BtnAnime_Click"/>
         <asp:Button ID="BtnManga" runat="server" Text="Manga" width="100px" OnClick="BtnManga_Click"/>
+        <br />
+        <asp:Label ID="LbError" runat="server" Text="Error"></asp:Label>
     </div>
     <div align="center">
         <asp:GridView ID="GvItemsLijst" runat="server" AutoGenerateColumns="false">

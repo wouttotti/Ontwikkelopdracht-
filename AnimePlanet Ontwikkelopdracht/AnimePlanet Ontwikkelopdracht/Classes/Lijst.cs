@@ -8,11 +8,13 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
     public class Lijst
     {
         public int Lijst_ID { get; set; }
-        public Gebruiker Gebruiker { get; set; }
-        public Lijst(int lijst_ID, Gebruiker gebruiker)
+        public string Soort { get; set; }
+        public int Gebruiker { get; set; }
+        public Lijst(int lijst_ID, string soort, int gebruiker)
         {
             this.Lijst_ID = lijst_ID;
             this.Gebruiker = gebruiker;
+            this.Soort = soort;
         }
     }
 }
