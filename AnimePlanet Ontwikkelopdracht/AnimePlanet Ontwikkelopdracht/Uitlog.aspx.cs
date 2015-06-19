@@ -17,7 +17,8 @@ namespace AnimePlanet_Ontwikkelopdracht
         protected void Uitloggen_Click(object sender, EventArgs e)
         {
             Session.Abandon();
-            Response.Redirect("Home.aspx");
+            Response.Cookies["Gebruikersnaam"].Expires = DateTime.Now.AddDays(-1);
+            Response.Redirect("Index.aspx");
         }
     }
 }

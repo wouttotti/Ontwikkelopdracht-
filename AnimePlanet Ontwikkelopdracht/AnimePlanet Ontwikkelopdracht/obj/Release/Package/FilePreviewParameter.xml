@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="http://athena.fhict.nl/users/i289997" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Wout\\Documents\\GitHub\\Ontwikkelopdracht-\\AnimePlanet\ Ontwikkelopdracht\\AnimePlanet\ Ontwikkelopdracht\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Wout\\Documents\\GitHub\\Ontwikkelopdracht-\\AnimePlanet\ Ontwikkelopdracht\\AnimePlanet\ Ontwikkelopdracht\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="ConnectionString-Web.config Connection String" description="" value="DATA SOURCE=192.168.15.50:1521/fhictora;PASSWORD=Password;USER ID=dbi289997" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Wout\\Documents\\GitHub\\Ontwikkelopdracht-\\AnimePlanet\ Ontwikkelopdracht\\AnimePlanet\ Ontwikkelopdracht\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ConnectionString']/@connectionString" />
+  </parameter>
+</parameters>

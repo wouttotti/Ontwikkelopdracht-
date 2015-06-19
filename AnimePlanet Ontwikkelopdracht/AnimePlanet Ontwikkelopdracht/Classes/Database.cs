@@ -13,6 +13,9 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
         private OracleConnection connectie;
         private string conn = WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
+        /// <summary>
+        /// Hier wordt de connectie met de database geopend.
+        /// </summary>
         public void ConnectieOpen()
         {
             try
@@ -28,6 +31,11 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
             }
         }
 
+        /// <summary>
+        /// Er wordt in de database gezocht naar alle gebruikers met de gestelde eisen van de sql.
+        /// </summary>
+        /// <param name="sql">Hier worden alle eisen gegeven die uit de database gehaald moet worden.</param>
+        /// <returns>Een lijst wordt teruggegeven met de eisen van de sql.</returns>
         public List<Gebruiker> GetGebruikers(string sql)
         {
             List<Gebruiker> Gebruiker = new List<Gebruiker>();
@@ -62,6 +70,11 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
             return Gebruiker;
         }
 
+        /// <summary>
+        /// Er wordt in de database gezocht naar alle items met de gestelde eisen van de sql.
+        /// </summary>
+        /// <param name="sqlItem">Hier worden alle eisen gegeven die uit de database gehaald moeten worden.</param>
+        /// <returns>Een lijst wordt teruggegeven met de eisen van de sql.</returns>
         public List<Item> GetItems(string sqlItem)
         {
             
@@ -151,15 +164,20 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
             return Items;
         }
 
+        /// <summary>
+        /// Hier wordt er een insert gemaakt in de database.
+        /// </summary>
+        /// <param name="sql">Alles wat in de database gezet moet worden staat in de sql.</param>
+        /// <returns>Als het gelukt is om het in de database te doen returned hij true.</returns>
         public bool Insert(string sql)
         {
             try
             {
-                ConnectieOpen();
+                ConnectieOpen();  
                 OracleDataAdapter DataAdapter = new OracleDataAdapter(sql, connectie);
                 DataSet Data = new DataSet();
                 DataAdapter.Fill(Data);
-                return true;
+               
             }
             catch (OracleException)
             {
@@ -169,6 +187,7 @@ namespace AnimePlanet_Ontwikkelopdracht.Classes
             {
                 connectie.Close();
             }
+            return true;
         }
     }
 }

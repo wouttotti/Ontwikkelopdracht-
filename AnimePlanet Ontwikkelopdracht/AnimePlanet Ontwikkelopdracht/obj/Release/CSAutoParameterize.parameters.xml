@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ConnectionString-Web.config Connection String" description="ConnectionString Connection String used in web.config by the application to access the database." defaultValue="DATA SOURCE=192.168.15.50:1521/fhictora;PASSWORD=Password;USER ID=dbi289997" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Wout\\Documents\\GitHub\\Ontwikkelopdracht-\\AnimePlanet\ Ontwikkelopdracht\\AnimePlanet\ Ontwikkelopdracht\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ConnectionString']/@connectionString" />
+  </parameter>
+</parameters>
