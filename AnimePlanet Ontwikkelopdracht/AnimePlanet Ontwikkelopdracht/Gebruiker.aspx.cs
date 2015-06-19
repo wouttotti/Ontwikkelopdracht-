@@ -11,14 +11,19 @@ namespace AnimePlanet_Ontwikkelopdracht
 {
     public partial class Gegevens : System.Web.UI.Page
     {
-        public Administratie administratie = new Classes.Administratie();
+        public Administratie administratie = new Administratie();
         protected void Page_Load(object sender, EventArgs e)
         {
             if(Session["EMAIL"] != null)
             {
-                GvVolgen.DataSource = administratie.GebruikerVolger(Convert.ToString(Session["Email"]));
-                GvVolgen.DataBind();
+                RefreshGridview();
             }
+        }
+
+        private void RefreshGridview()
+        {
+            GvVolgen.DataSource = administratie.GebruikerVolger(Convert.ToString(Session["Email"]));
+            GvVolgen.DataBind();
         }
 
         protected void btnzoeken_Click(object sender, EventArgs e)
@@ -50,19 +55,20 @@ namespace AnimePlanet_Ontwikkelopdracht
                 int index = Convert.ToInt32(e.CommandArgument);
                 int Item_ID = Convert.ToInt32(GvGebruikers.Rows[index].Cells[0].Text);
 
-                if (administratie.ToevoegenAanLijst(Item_ID, Convert.ToString(Session["EMAIL"])) == true)
+                if (administratie.VolgerToevoegen(Item_ID, Convert.ToString(Session["EMAIL"])) == true)
                 {
-                    LbError2.Text = "Item is toegevoegd.";
-                    LbError2.ForeColor = System.Drawing.Color.Green;
-                    LbError2.Visible = true;
+                    LbError1.Text = "Volger is toegevoegd.";
+                    LbError1.ForeColor = System.Drawing.Color.Green;
+                    LbError1.Visible = true;
                 }
                 else
                 {
-                    LbError2.Text = "Item is al in je lijst aanwezig.";
-                    LbError2.ForeColor = System.Drawing.Color.Red;
-                    LbError2.Visible = true;
+                    LbError1.Text = "Volger is al in je volgerlijst aanwezig.";
+                    LbError1.ForeColor = System.Drawing.Color.Red;
+                    LbError1.Visible = true;
                 }
             }
+            RefreshGridview();
         }
     }
 }

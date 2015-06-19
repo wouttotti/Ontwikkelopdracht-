@@ -4,7 +4,7 @@
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <title><%: Page.Title %> - AnimePlanet</title>
     <asp:PlaceHolder runat="server">     
           <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>  
@@ -55,11 +55,11 @@
                    </ul>
                 </section>
                 <nav>
-                    <ul id="menu">
-                        <li><a runat="server" href="~/Home">Home</a></li>
-                        <li><a runat="server" href="~/Lijsten" >Lijsten</a></li>
-                        <li><a runat="server" href="~/Gebruiker" >Gebruiker</a></li>
-                        <li><a runat="server" href="~/Zoeken">Zoeken</a></li>
+                    <ul id="menu" runat="server">
+                        <li><a id="HomeLink" runat="server" href="~/Index">Home</a></li>
+                        <li><a id="LijstenLink" runat="server" href="~/Lijsten" >Lijsten</a></li>
+                        <li><a id="GebruikerLink" runat="server" href="~/Gebruiker" >Gebruiker</a></li>
+                        <li><a id="ZoekenLink" runat="server" href="~/Zoeken">Zoeken</a></li>
                     </ul>
                 </nav>
             </div>

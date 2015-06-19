@@ -68,6 +68,13 @@ namespace AnimePlanet_Ontwikkelopdracht
         protected void Page_Load(object sender, EventArgs e)
         {
             Inlognaam.Visible = false;
+            if(!IsPostBack)
+            {
+                if(Request.Cookies["Gebruikersnaam"] != null && Request.Cookies["Wachtwoord"] != null)
+                {
+                    Session["Email"] = Request.Cookies["Gebruikersnaam"].Value;
+                }
+            }
 
             if(Session["EMAIL"] != null)
             {
@@ -76,6 +83,9 @@ namespace AnimePlanet_Ontwikkelopdracht
                 loginLink.HRef = "~/Uitlog";
                 loginLink.InnerText = "Uitloggen";
                 registerLink.Visible = false;
+                LijstenLink.Visible = true;
+                GebruikerLink.Visible = true;
+                ZoekenLink.Visible = true;
             }
             else
             {
@@ -83,6 +93,9 @@ namespace AnimePlanet_Ontwikkelopdracht
                 loginLink.HRef = "~/Login";
                 loginLink.InnerText = "Inloggen";
                 registerLink.Visible = true;
+                LijstenLink.Visible = false;
+                GebruikerLink.Visible = false;
+                ZoekenLink.Visible = false;
             }
         }
     }

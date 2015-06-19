@@ -12,6 +12,7 @@
             <br />
             <asp:Button ID="BtnLogin" runat="server" Text="Inloggen" OnClick="BtnLogin_Click" />
             <br />
+            <asp:CheckBox ID="CbCookies" runat="server" Font-Bold="False" Font-Size="Small" Text="Onthoudt mij" />
             <br />
             <asp:Label ID="LbInlogError" runat="server" Text="Error"></asp:Label>
         </div>
@@ -25,7 +26,7 @@
             <asp:Label ID="LbRegWachtwoord" runat="server" Text="Wachtwoord:"></asp:Label>  
             <asp:TextBox ID="TbRegWachtwoord" runat="server" Width="200px" style="display: block"></asp:TextBox>
             <br />
-            <asp:Button ID="BtnRegister" runat="server" Text="Registreren" />
+            <asp:Button ID="BtnRegister" runat="server" Text="Registreren" OnClick="BtnRegister_Click" />
             <br />
             <br />
             <asp:Label ID="LbRegistreerError" runat="server" Text="Error"></asp:Label>

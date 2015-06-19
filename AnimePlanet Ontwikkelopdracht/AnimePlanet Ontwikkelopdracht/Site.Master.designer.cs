@@ -76,6 +76,51 @@ namespace AnimePlanet_Ontwikkelopdracht {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor loginLink;
         
         /// <summary>
+        /// menu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menu;
+        
+        /// <summary>
+        /// HomeLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor HomeLink;
+        
+        /// <summary>
+        /// LijstenLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor LijstenLink;
+        
+        /// <summary>
+        /// GebruikerLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor GebruikerLink;
+        
+        /// <summary>
+        /// ZoekenLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor ZoekenLink;
+        
+        /// <summary>
         /// MainContent control.
         /// </summary>
         /// <remarks>

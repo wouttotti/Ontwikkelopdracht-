@@ -6,6 +6,8 @@
     
 
 <div id="Zoeken" style="margin-left: 100px">
+    <asp:Label ID="LlInfo" runat="server" Text="Zoeken naar anime, manga of personage's." Font-Bold="True" Font-Size="Large"></asp:Label>
+    <br />
     <asp:TextBox ID="TbZoeken" runat="server" style="width: 300px" BorderStyle="None"></asp:TextBox>
     <asp:DropDownList ID="DdlSoort"  runat="server">
         <asp:ListItem>Anime</asp:ListItem>

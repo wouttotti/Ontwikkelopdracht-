@@ -11,7 +11,7 @@
         <br />
         <asp:Label ID="LbError1" runat="server" Text="Error" Font-Bold="False" Font-Size="Medium" Visible="False"></asp:Label>
         <br />
-        <asp:GridView ID="GvGebruikers" runat="server" AutoGenerateColumns="False">
+        <asp:GridView ID="GvGebruikers" runat="server" AutoGenerateColumns="False" OnRowCommand="gvGebruiker_RowCommand">
             <Columns>
                 <asp:BoundField HeaderText="ID" DataField="ID" />
                 <asp:BoundField HeaderText="Email" DataField="Email"/>
@@ -20,7 +20,7 @@
         </asp:GridView>
     </div>
     <div style="float:right; margin-right: 100px;">
-        <asp:Label ID="Label2" runat="server" Text="Mensen die jij volgt" Font-Bold="True" Font-Size="Large"></asp:Label>
+        <asp:Label ID="LbInfo2" runat="server" Text="Mensen die jij volgt" Font-Bold="True" Font-Size="Large"></asp:Label>
         <br />
         <asp:Label ID="LbError2" runat="server" Text="Error" Font-Bold="False" Font-Size="Medium" Visible="False"></asp:Label>
         <br />
